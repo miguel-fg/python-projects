@@ -1,4 +1,3 @@
-from math import factorial as f
 from decimal import Decimal, getcontext
 
 def get_prec():
@@ -18,32 +17,34 @@ def get_prec():
 
     return int(prec)
 
-def sum_q(q):
-    """A single iteration of the summation part of Chudnovsky's algorithm to calculate PI"""
+def leibniz(p):
+    """Algorithm implementation"""
 
-    num = pow(-1, q) * f(6*q) * (13591409 + 545140134*q)
-    exp = 3 / 2 + 3*q
-    den = f(3*q) * pow(f(q), 3) * pow(640320, Decimal(exp))
+    s = 3
+    pi = 1
+    sub = True
 
-    return Decimal(num)/ Decimal(den)
+    for i in range(s, p, 2):
+        if(sub):
+            pi -= 1/i
+        else:
+            pi += 1/i
+
+        sub = not sub
+
+    return 4 * Decimal(pi)
 
 def main():
-    """Main function. Algorithm implementation"""
-
-    print("CHUDNOVSKY ALGORITHM\n")
+    """Main function"""
+    
+    print("LEIBNIZ ALGORITHM\n")
     print("--------------------")
 
-    pi = 0
     precision = get_prec()
-
-    for i in range(0, precision):
-        pi += sum_q(i)
-
-    pi *= 12
-    pi = 1/pi
+    
+    pi = leibniz(precision)
 
     print(pi)
 
 if __name__ == "__main__":
     main()
-

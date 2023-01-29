@@ -4,7 +4,7 @@ Python implementations of various PI calculation algorithms. Python is ideal to 
 
 ## Leibniz 
 
-Apparently Leibniz has enough things named after him that [this](https://en.wikipedia.org/wiki/List_of_things_named_after_Gottfried_Leibniz) Wikipedia entry exists, cool. This is a very simple series but EXTREMELY slow to converge, I may add a graph showing how it compares to the actual value of PI over each iteration.
+Apparently Leibniz has enough things named after him that [this](https://en.wikipedia.org/wiki/List_of_things_named_after_Gottfried_Leibniz) Wikipedia entry exists, cool. This is a very simple series but EXTREMELY slow to converge, 1 million iterations is barely enough to get "3.14159". I may add a graph showing how it compares to the actual value of PI over each iteration.
 
 The formula for $\pi$ is defined as
 
@@ -12,7 +12,7 @@ $$\frac{\pi}{4} = 1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\frac{1}{9}-...$$
 
 ## Chudnovsky
 
-Much more efficient method to calculate $\pi$, this algorithm is converges rapidly and it's still being used to calculate its digits and it broke the 100 trillion digits world record in March, 2022. Be wary that because of the use of factorial in the formula, the time complexity of this algorithm increases extremely fast too. 
+Much more efficient method to calculate $\pi$, this algorithm is converges rapidly and it's still being used to calculate its digits. In March 2022, it broke the 100 trillion digits world record. Be wary that because of the use of factorial in the formula, the time complexity of this algorithm increases extremely fast, I recommend not going past 100 as the precision setting without multithreading. 
 
 The algorithm states that
 
