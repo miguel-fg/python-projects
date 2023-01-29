@@ -13,7 +13,7 @@ def set_dec():
 
 
 def sum_q(q):
-    """A single iteration of the sumation part of Chudnovsky's algorithm to calculate PI"""
+    """A single iteration of the summation part of Chudnovsky's algorithm to calculate PI"""
 
     num = pow(-1, q) * f(6*q) * (13591409 + 545140134*q)
     exp = 3 / 2 + 3*q
