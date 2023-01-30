@@ -18,11 +18,17 @@ def get_prec():
     return int(prec)
 
 def sum_k(k):
+    """Single iteration of the summation part of the algorithm"""
+    
     series = 4/(8*k+1) - 2/(8*k+4) - 1/(8*k+5) - 1/(8*k+6)
 
     return Decimal(1/pow(16, k)) * Decimal(series)
 
 def main():
+    """Main function. Algorithm implementation"""
+
+    print("BBP ALGORITHM\n")
+    print("--------------------")
 
     pi = 0
     precision = get_prec()
