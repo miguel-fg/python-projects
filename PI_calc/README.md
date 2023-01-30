@@ -17,3 +17,7 @@ Much more efficient method to calculate $\pi$, this algorithm is converges rapid
 The algorithm states that
 
 $$\frac{1}{\pi} = 12\sum_{q=0}^{\infty} \frac{(-1)^q(6q)!(545140134q + 13591409)}{(3q)!(q!)^3(640320)^{3q + \frac{3}{2}}} $$
+
+## Bailey-Borwein-Plouffe
+
+$$\pi = \sum_{k=0}^{\infty} [\frac{1}{16^k}(\frac{4}{8k+1} - \frac{2}{8k+4} - \frac{1}{8k+5} - \frac{1}{8k+6})]$$
