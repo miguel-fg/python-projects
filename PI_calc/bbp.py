@@ -24,19 +24,23 @@ def sum_k(k):
 
     return Decimal(1/pow(16, k)) * Decimal(series)
 
+def algorithm(k):
+    pi = 0
+
+    for i in range(0, k):
+        pi += sum_k(i)
+
+    return pi
+
 def main():
     """Main function. Algorithm implementation"""
 
     print("BBP ALGORITHM\n")
     print("--------------------")
 
-    pi = 0
     precision = get_prec()
 
-    for i in range(0, precision):
-        pi += sum_k(i)
-    
-    print(pi)
+    print(algorithm(precision))
 
 if __name__ == "__main__":
     main()
