@@ -27,22 +27,26 @@ def sum_q(q):
 
     return Decimal(num)/ Decimal(den)
 
+def algorithm(q):
+    pi = 0
+
+    for i in range(0, q):
+        pi += sum_q(i)
+
+    pi *= 12
+    pi = 1/pi
+
+    return pi
+
 def main():
     """Main function. Algorithm implementation"""
 
     print("CHUDNOVSKY ALGORITHM\n")
     print("--------------------")
 
-    pi = 0
     precision = get_prec()
 
-    for i in range(0, precision):
-        pi += sum_q(i)
-
-    pi *= 12
-    pi = 1/pi
-
-    print(pi)
+    print(algorithm(precision))
 
 if __name__ == "__main__":
     main()
