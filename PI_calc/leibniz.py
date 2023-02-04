@@ -17,7 +17,7 @@ def get_prec():
 
     return int(prec)
 
-def leibniz(p):
+def algorithm(p):
     """Algorithm implementation"""
 
     s = 3
@@ -42,9 +42,8 @@ def main():
 
     precision = get_prec()
     
-    pi = leibniz(precision)
+    print(algorithm(precision))
 
-    print(pi)
 
 if __name__ == "__main__":
     main()
