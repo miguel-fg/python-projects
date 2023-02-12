@@ -29,27 +29,20 @@ l_check: tk.CTkCheckBox
 b_check: tk.CTkCheckBox
 c_check: tk.CTkCheckBox
 
-def get_leibniz(p):
+def get_al(p, state):
     graph = []
 
-    for i in range(1, p + 1):
-        graph.append(l(i))
-    
-    return graph
-
-def get_bbp(p):
-    graph = []
-
-    for i in range(1, p + 1):
-        graph.append(b(i))
-    
-    return graph
-
-def get_chudnovsky(p):
-    graph = []
-
-    for i in range(1, p + 1):
-        graph.append(c(i))
+    if(state == 'l'):
+        for i in range(1, p + 1):
+            graph.append(l(i))
+    elif(state == 'b'):
+        for i in range(1, p + 1):
+            graph.append(b(i))
+    elif(state == 'c'):
+        for i in range(1, p + 1):
+            graph.append(c(i))
+    else:
+        raise Exception("Unkown algorithm state parameter: " + state)
     
     return graph
 
@@ -62,13 +55,13 @@ def plot(f):
     p = int(precision.get())
 
     if(l_check._check_state):
-        pi_leibniz = get_leibniz(p)
+        pi_leibniz = get_al(p, 'l')
         plot_pi.plot(pi_leibniz)
     if(b_check._check_state):
-        pi_bbp = get_bbp(p)
+        pi_bbp = get_al(p, 'b')
         plot_pi.plot(pi_bbp)
     if(c_check._check_state):
-        pi_chudnovsky = get_chudnovsky(p)
+        pi_chudnovsky = get_al(p, 'c')
         plot_pi.plot(pi_chudnovsky)
 
     canvas = FigureCanvasTkAgg(fig, master=f)
@@ -91,7 +84,7 @@ def side_build(f):
     precision_label = tk.CTkLabel(f, text="Algorithm precision")
     precision_label.pack()
     precision = tk.CTkEntry(f)
-    precision.insert(0, "2")
+    precision.insert(0, "100")
     precision.pack(pady=(0, 50))
 
     l_check = tk.CTkCheckBox(f, text="Leibniz")
