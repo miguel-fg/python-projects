@@ -29,6 +29,13 @@ l_check: tk.CTkCheckBox
 b_check: tk.CTkCheckBox
 c_check: tk.CTkCheckBox
 
+window: tk.CTkFrame
+side: tk.CTkFrame
+canvas: FigureCanvasTkAgg
+
+fig = Figure(figsize = (8,5), dpi=100)
+plot_pi = fig.add_subplot()
+
 def get_al(p, state):
     graph = []
 
@@ -47,9 +54,8 @@ def get_al(p, state):
     return graph
 
 def plot(f):
-    fig = Figure(figsize = (8,5), dpi=100)
+    global canvas
 
-    plot_pi = fig.add_subplot()
     plot_pi.axhline(y=math.pi, color="r", linestyle="-")
 
     p = int(precision.get())
@@ -68,18 +74,20 @@ def plot(f):
     canvas.draw()
     canvas.get_tk_widget().pack(pady=10)
 
-def main_build(f):
+def refresh():
+    canvas.get_tk_widget().destroy()
+    plot_pi.clear()
+    plot(window)
 
+
+def main_build(f):
     label = tk.CTkLabel(f, text="PI Algorithm visualizer", text_color="white", font=("Roboto", 24))
     label.pack()
-
-    plot(f)
     
-    exitButton = tk.CTkButton(f, text="Exit", width=100, command=m.destroy)
-    exitButton.pack(pady=10)
+    plot(f)
 
 def side_build(f):
-    global precision, l_check, b_check, c_check
+    global precision, l_check, b_check, c_check, window
 
     precision_label = tk.CTkLabel(f, text="Algorithm precision")
     precision_label.pack()
@@ -88,28 +96,32 @@ def side_build(f):
     precision.pack(pady=(0, 50))
 
     l_check = tk.CTkCheckBox(f, text="Leibniz")
-    l_check.select()
     l_check.pack(pady= 10)
     b_check = tk.CTkCheckBox(f, text="BBP")
-    b_check.select()
     b_check.pack(pady=10)
     c_check = tk.CTkCheckBox(f, text="Chudnovsky")
-    c_check.select()
     c_check.pack(pady=10)
 
+    run_button = tk.CTkButton(f, text="Run", width=100, command=refresh)
+    run_button.pack(pady=(50, 5))
+    exit_button = tk.CTkButton(f, text="Exit", width=100, command=m.destroy)
+    exit_button.pack(pady=5)
+
 def app_build():
+    global window, side
+
     m.title("PI visualization")
     m.geometry("1000x700")
     m.minsize(1000, 700)
 
-    main = tk.CTkFrame(frame, width=750, height=650)
-    main.grid(row=0, column=0, padx=10, pady=5)
+    window = tk.CTkFrame(frame, width=750, height=650)
+    window.grid(row=0, column=0, padx=10, pady=5)
 
     side = tk.CTkFrame(frame, width=200, height=650)
     side.grid(row=0, column=1, pady=5)
 
     side_build(side)
-    main_build(main)
+    main_build(window)
 
     m.mainloop()
 
